@@ -119,6 +119,16 @@
     }
 }
 
+/* Prevent Autofill CSS */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--color-primary);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 6px;
@@ -131,21 +141,11 @@
 
 ::-webkit-scrollbar-thumb {
     border-radius: 6px;
-    background-image: linear-gradient(to bottom, var(--color-secondary), var(--color-primary));
+    background-color: var(--color-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
     opacity: 90;
-}
-
-/* Prevent Autofill CSS */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: var(--color-primary);
-    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Error Page Linear Gradient */
