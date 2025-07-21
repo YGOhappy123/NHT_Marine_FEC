@@ -57,8 +57,12 @@ const ForgotPasswordForm = ({ changeFormType }: ForgotPasswordFormProps) => {
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <Button type="submit" className="w-full rounded font-semibold capitalize text-base h-12">
-                        Gửi email xác nhận
+                    <Button
+                        type="submit"
+                        disabled={form.formState.isSubmitting}
+                        className="w-full rounded font-semibold capitalize text-base h-12"
+                    >
+                        {form.formState.isSubmitting ? 'Đang tải...' : 'Gửi email xác nhận'}
                     </Button>
 
                     <div className="mt-6">

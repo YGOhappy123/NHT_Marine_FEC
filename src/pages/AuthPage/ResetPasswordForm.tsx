@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
 import authService from '@/services/authService'
 import toastConfig from '@/configs/toast'
 
@@ -72,8 +72,7 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                             <FormItem>
                                 <FormLabel>Mật khẩu</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        type="password"
+                                    <PasswordInput
                                         placeholder="Mật khẩu..."
                                         className="rounded h-12 font-semibold border-2"
                                         {...field}
@@ -93,8 +92,7 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                             <FormItem>
                                 <FormLabel>Nhập lại mật khẩu</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        type="password"
+                                    <PasswordInput
                                         placeholder="Nhập lại mật khẩu..."
                                         className="rounded h-12 font-semibold border-2"
                                         {...field}
@@ -107,8 +105,12 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <Button type="submit" className="w-full rounded font-semibold capitalize text-base h-12">
-                        Gửi email xác nhận
+                    <Button
+                        type="submit"
+                        disabled={form.formState.isSubmitting}
+                        className="w-full rounded font-semibold capitalize text-base h-12"
+                    >
+                        {form.formState.isSubmitting ? 'Đang tải...' : 'Xác nhận'}
                     </Button>
 
                     <div className="mt-6">

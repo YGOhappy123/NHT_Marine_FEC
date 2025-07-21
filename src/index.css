@@ -132,6 +132,7 @@ input:-webkit-autofill:active {
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
