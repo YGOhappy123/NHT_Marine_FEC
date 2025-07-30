@@ -3,7 +3,7 @@ import { Navigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
-import { AUTH_CAROUSEL_IMAGES } from '@/configs/constants'
+import { AUTH_CAROUSEL_IMAGES, AUTH_CAROUSEL_VIDEOS } from '@/configs/constants'
 import { RootState } from '@/store'
 import useTitle from '@/hooks/useTitle'
 import toastConfig from '@/configs/toast'
@@ -47,6 +47,7 @@ const AuthPage = () => {
                     <div>
                         <AuthCarousel
                             images={AUTH_CAROUSEL_IMAGES}
+                            videos={AUTH_CAROUSEL_VIDEOS}
                             size={{
                                 width: 500,
                                 height: 620

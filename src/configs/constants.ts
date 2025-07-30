@@ -33,6 +33,11 @@ export const LOGIN_SESSION_EXPIRED_MESSAGE = 'Phiên đăng nhập hết hạn. 
 
 export const INTRODUCTION_VIDEO_URL = 'https://youtube.com'
 
-export const AUTH_CAROUSEL_IMAGES = [
-    'https://www.itl.cat/pngfile/big/185-1857360_animated-gif-fish-share-or-download-water-with.gif'
+export const AUTH_CAROUSEL_IMAGES = []
+
+export const AUTH_CAROUSEL_VIDEOS = [
+    {
+        source: './videos/jelly-fish.mp4',
+        type: 'video/mp4'
+    }
 ]
