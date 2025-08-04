@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -40,6 +41,7 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
     --container-container: 1400px;
+    --shadow-md-reverse: 0 -4px 6px -1px rgb(0 0 0 / 0.1), 0 -2px 4px -2px rgb(0 0 0 / 0.1);
 
     @keyframes collapsible-down {
         from {

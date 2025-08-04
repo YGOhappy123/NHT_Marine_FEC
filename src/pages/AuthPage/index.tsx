@@ -16,7 +16,7 @@ import AuthCarousel from '@/components/common/AuthCarousel'
 export type FormType = 'login' | 'register' | 'forgot' | 'reset'
 
 const AuthPage = () => {
-    useTitle('NHT Marine | Đăng Nhập')
+    useTitle('NHT Marine | Đăng nhập')
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
