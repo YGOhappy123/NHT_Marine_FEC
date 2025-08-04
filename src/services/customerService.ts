@@ -5,14 +5,13 @@ import { onError } from '@/utils/errorsHandler'
 import useAxiosIns from '@/hooks/useAxiosIns'
 import toastConfig from '@/configs/toast'
 
-const customerService = ({ enableFetching = false }: { enableFetching: boolean }) => {
+const customerService = ({ enableFetching }: { enableFetching: boolean }) => {
     const axios = useAxiosIns()
     const queryClient = useQueryClient()
 
     const updateCustomerMutation = useMutation({
-        mutationFn: ({ customerId, data }: { customerId: number; data: Partial<ICustomer> }) =>
-            axios.patch<IResponseData<any>>(`/customers/${customerId}`, data),
-        onSuccess: (res) => {
+        mutationFn: (data: Partial<ICustomer>) => axios.patch<IResponseData<any>>('/customers', data),
+        onSuccess: res => {
             queryClient.invalidateQueries({ queryKey: ['customers'] })
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         },
@@ -21,4 +20,5 @@ const customerService = ({ enableFetching = false }: { enableFetching: boolean }
 
     return { updateCustomerMutation }
 }
+
 export default customerService

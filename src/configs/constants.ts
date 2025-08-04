@@ -31,6 +31,8 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 export const LOGIN_SESSION_EXPIRED_MESSAGE = 'Phiên đăng nhập hết hạn. Xin vui lòng đăng nhập lại.'
 
+export const LOGIN_REQUIRED_MESSAGE = 'Bạn cần phải đăng nhập trước khi thực hiện hành đồng này.'
+
 export const INTRODUCTION_VIDEO_URL = 'https://youtube.com'
 
 export const AUTH_CAROUSEL_IMAGES = []

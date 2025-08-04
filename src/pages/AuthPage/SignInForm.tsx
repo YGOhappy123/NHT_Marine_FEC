@@ -51,7 +51,7 @@ const SignInForm = ({ changeFormType }: SignInFormProps) => {
                                 <FormControl>
                                     <Input
                                         placeholder="Tên đăng nhập..."
-                                        className="rounded h-12 font-semibold border-2"
+                                        className="h-12 rounded border-2 font-semibold"
                                         {...field}
                                     />
                                 </FormControl>
@@ -71,7 +71,7 @@ const SignInForm = ({ changeFormType }: SignInFormProps) => {
                                 <FormControl>
                                     <PasswordInput
                                         placeholder="Mật khẩu..."
-                                        className="rounded h-12 font-semibold border-2"
+                                        className="h-12 rounded border-2 font-semibold"
                                         {...field}
                                     />
                                 </FormControl>
@@ -85,7 +85,7 @@ const SignInForm = ({ changeFormType }: SignInFormProps) => {
                     <Button
                         type="submit"
                         disabled={form.formState.isSubmitting}
-                        className="w-full rounded font-semibold capitalize text-base h-12"
+                        className="h-12 w-full rounded text-base font-semibold capitalize"
                     >
                         {form.formState.isSubmitting ? 'Đang tải...' : 'Đăng nhập'}
                     </Button>
@@ -100,7 +100,7 @@ const SignInForm = ({ changeFormType }: SignInFormProps) => {
                     </div>
 
                     <div className="mt-6">
-                        <span className="font-medium">Chưa có tài khoản? </span>
+                        <span className="font-medium text-[#101319]">Chưa có tài khoản? </span>
                         <span
                             className="text-primary cursor-pointer font-bold hover:underline"
                             onClick={() => changeFormType('register')}
@@ -110,7 +110,7 @@ const SignInForm = ({ changeFormType }: SignInFormProps) => {
                     </div>
 
                     <div className="mt-2">
-                        <span className="font-medium">Quên mật khẩu? </span>
+                        <span className="font-medium text-[#101319]">Quên mật khẩu? </span>
                         <span
                             className="text-primary cursor-pointer font-bold hover:underline"
                             onClick={() => changeFormType('forgot')}

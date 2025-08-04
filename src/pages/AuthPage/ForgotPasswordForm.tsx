@@ -46,7 +46,7 @@ const ForgotPasswordForm = ({ changeFormType }: ForgotPasswordFormProps) => {
                                 <FormControl>
                                     <Input
                                         placeholder="Email..."
-                                        className="rounded h-12 font-semibold border-2"
+                                        className="h-12 rounded border-2 font-semibold"
                                         {...field}
                                     />
                                 </FormControl>
@@ -60,13 +60,13 @@ const ForgotPasswordForm = ({ changeFormType }: ForgotPasswordFormProps) => {
                     <Button
                         type="submit"
                         disabled={form.formState.isSubmitting}
-                        className="w-full rounded font-semibold capitalize text-base h-12"
+                        className="h-12 w-full rounded text-base font-semibold capitalize"
                     >
                         {form.formState.isSubmitting ? 'Đang tải...' : 'Gửi email xác nhận'}
                     </Button>
 
                     <div className="mt-6">
-                        <span className="font-medium">Đã có tài khoản? </span>
+                        <span className="font-medium text-[#101319]">Đã có tài khoản? </span>
                         <span
                             className="text-primary cursor-pointer font-bold hover:underline"
                             onClick={() => changeFormType('login')}
@@ -76,7 +76,7 @@ const ForgotPasswordForm = ({ changeFormType }: ForgotPasswordFormProps) => {
                     </div>
 
                     <div className="mt-2">
-                        <span className="font-medium">Chưa có tài khoản? </span>
+                        <span className="font-medium text-[#101319]">Chưa có tài khoản? </span>
                         <span
                             className="text-primary cursor-pointer font-bold hover:underline"
                             onClick={() => changeFormType('register')}

@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 
 import { onError } from '@/utils/errorsHandler'
 import { setLogged, setUser, signOut } from '@/slices/authSlice'
+import { resetAppState } from '@/slices/appSlice'
 import { getMappedMessage } from '@/utils/resMessageMapping'
 import useAxiosIns from '@/hooks/useAxiosIns'
 import cookies from '@/libs/cookies'
@@ -26,7 +27,7 @@ const authService = () => {
         mutationFn: (account: { username: string; password: string }) =>
             axios.post<IResponseData<LoginResponse>>('/auth/sign-in', account),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             const redirectPath = cookies.get('redirect_path') || '/'
             const { user, accessToken, refreshToken } = res.data.data
             cookies.set('access_token', accessToken, {
@@ -41,6 +42,7 @@ const authService = () => {
             navigate(redirectPath as string)
             dispatch(setLogged(true))
             dispatch(setUser(user))
+            dispatch(resetAppState())
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         }
     })
@@ -49,7 +51,7 @@ const authService = () => {
         mutationFn: (data: { fullName: string; username: string; password: string; confirmPassword: string }) =>
             axios.post<IResponseData<LoginResponse>>('/auth/sign-up', data),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             const redirectPath = cookies.get('redirect_path') || '/'
             const { user, accessToken, refreshToken } = res.data.data
             cookies.set('access_token', accessToken, {
@@ -64,6 +66,7 @@ const authService = () => {
             navigate(redirectPath as string)
             dispatch(setLogged(true))
             dispatch(setUser(user))
+            dispatch(resetAppState())
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         }
     })
@@ -72,7 +75,7 @@ const authService = () => {
         mutationFn: ({ email }: { email: string }) =>
             axios.post<IResponseData<LoginResponse>>('/auth/forgot-password', { email }),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         }
     })
@@ -81,7 +84,7 @@ const authService = () => {
         mutationFn: (data: { resetPasswordToken: string; password: string; confirmPassword: string }) =>
             axios.post<IResponseData<any>>('/auth/reset-password', data),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         }
     })
@@ -97,7 +100,7 @@ const authService = () => {
             confirmPassword: string
         }) => axios.post<IResponseData<any>>('/auth/change-password', { oldPassword, newPassword, confirmPassword }),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         }
     })
@@ -105,7 +108,7 @@ const authService = () => {
     const googleAuthMutation = useMutation({
         mutationFn: (googleAccessToken: string) => axios.post('/auth/google-auth', { googleAccessToken }),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             const redirectPath = cookies.get('redirect_path') || '/'
             const { user, accessToken, refreshToken } = res.data.data
             cookies.set('access_token', accessToken, {
@@ -120,6 +123,7 @@ const authService = () => {
             navigate(redirectPath as string)
             dispatch(setLogged(true))
             dispatch(setUser(user))
+            dispatch(resetAppState())
             toast(getMappedMessage(res.data.message), toastConfig('success'))
         }
     })
@@ -127,7 +131,7 @@ const authService = () => {
     const deactivateAccountMutation = useMutation({
         mutationFn: () => axios.post<IResponseData<any>>(`/auth/deactivate-account`),
         onError: onError,
-        onSuccess: (res) => {
+        onSuccess: res => {
             toast(getMappedMessage(res.data.message), toastConfig('success'))
             dispatch(signOut())
         }

@@ -13,6 +13,7 @@ declare global {
         variants?: Partial<IProductVariant>[]
         productItems?: Partial<IProductItem>[]
         promotions?: Partial<IPromotion>[]
+        discountRate?: number
     }
 
     interface ICategory {

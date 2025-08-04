@@ -49,12 +49,9 @@ const ProfileForm = () => {
             }
 
             await updateCustomerMutation.mutateAsync({
-                customerId: user.customerId,
-                data: {
-                    fullName: values.fullName,
-                    email: values.email,
-                    avatar: newImageUrl ?? user.avatar
-                }
+                fullName: values.fullName,
+                email: values.email,
+                avatar: newImageUrl ?? user.avatar
             })
 
             dispatch(

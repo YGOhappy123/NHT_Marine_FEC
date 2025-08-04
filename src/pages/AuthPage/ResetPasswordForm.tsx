@@ -22,7 +22,7 @@ const resetPasswordFormSchema = z
             .max(20, { message: 'Mật khẩu không vượt quá 20 ký tự.' }),
         confirmPassword: z.string()
     })
-    .refine((data) => data.password === data.confirmPassword, {
+    .refine(data => data.password === data.confirmPassword, {
         message: 'Mật khẩu không trùng khớp.',
         path: ['confirmPassword']
     })
@@ -74,7 +74,7 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                                 <FormControl>
                                     <PasswordInput
                                         placeholder="Mật khẩu..."
-                                        className="rounded h-12 font-semibold border-2"
+                                        className="h-12 rounded border-2 font-semibold"
                                         {...field}
                                     />
                                 </FormControl>
@@ -94,7 +94,7 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                                 <FormControl>
                                     <PasswordInput
                                         placeholder="Nhập lại mật khẩu..."
-                                        className="rounded h-12 font-semibold border-2"
+                                        className="h-12 rounded border-2 font-semibold"
                                         {...field}
                                     />
                                 </FormControl>
@@ -108,13 +108,13 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                     <Button
                         type="submit"
                         disabled={form.formState.isSubmitting}
-                        className="w-full rounded font-semibold capitalize text-base h-12"
+                        className="h-12 w-full rounded text-base font-semibold capitalize"
                     >
                         {form.formState.isSubmitting ? 'Đang tải...' : 'Xác nhận'}
                     </Button>
 
                     <div className="mt-6">
-                        <span className="font-medium">Đã có tài khoản? </span>
+                        <span className="font-medium text-[#101319]">Đã có tài khoản? </span>
                         <span
                             className="text-primary cursor-pointer font-bold hover:underline"
                             onClick={() => changeFormType('login')}
@@ -124,7 +124,7 @@ const ResetPasswordForm = ({ changeFormType }: ResetPasswordFormProps) => {
                     </div>
 
                     <div className="mt-2">
-                        <span className="font-medium">Chưa có tài khoản? </span>
+                        <span className="font-medium text-[#101319]">Chưa có tài khoản? </span>
                         <span
                             className="text-primary cursor-pointer font-bold hover:underline"
                             onClick={() => changeFormType('register')}
