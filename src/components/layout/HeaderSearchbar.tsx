@@ -156,7 +156,7 @@ const HeaderSearchbar = () => {
                                             setSearchTerm('')
                                             setSearchResult([])
                                             setInputFocusing(false)
-                                            navigate(`/product/${product.rootProductId}`)
+                                            navigate(`/products/${product.rootProductId}`)
                                         }}
                                         className="hover:bg-muted/80 flex cursor-pointer items-start gap-4 p-3"
                                     >

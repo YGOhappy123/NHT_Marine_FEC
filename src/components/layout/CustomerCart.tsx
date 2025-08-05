@@ -92,7 +92,7 @@ const CustomerCart = ({ trigger }: CustomerCartProps) => {
                             disabled={totalCount === 0}
                         >
                             <CircleDollarSign />
-                            Thanh toán
+                            Đặt hàng
                         </Button>
                     </div>
                 </SheetFooter>

@@ -63,6 +63,22 @@ declare global {
         createdByStaff?: Partial<IStaff> | string
         products?: Partial<IRootProduct>[]
     }
+
+    interface ICoupon {
+        couponId: number
+        code: string
+        type: CouponType
+        amount: number
+        maxUsage?: number
+        isActive: boolean
+        expiredAt: string
+        createdAt: string
+        createdBy: number
+
+        createdByStaff?: Partial<IStaff> | string
+    }
+
+    type CouponType = 'Fixed' | 'Percentage'
 }
 
 export {}

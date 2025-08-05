@@ -114,18 +114,14 @@ const ProfileForm = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="text-card-foreground">Vai trò</FormLabel>
-                                    <Select
-                                        onValueChange={(value) => {}}
-                                        value={field.value?.toString() ?? ''}
-                                        disabled
-                                    >
+                                    <Select onValueChange={() => {}} value={field.value?.toString() ?? ''} disabled>
                                         <FormControl>
                                             <SelectTrigger className="caret-card-foreground text-card-foreground h-12! w-full rounded border-2 font-semibold">
                                                 <SelectValue placeholder="Vai trò..." />
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            {[{ roleId: 0, name: 'Khách hàng' }].map((role) => (
+                                            {[{ roleId: 0, name: 'Khách hàng' }].map(role => (
                                                 <SelectItem key={role.roleId} value={role.roleId.toString()}>
                                                     {role.name}
                                                 </SelectItem>

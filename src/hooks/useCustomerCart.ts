@@ -79,6 +79,7 @@ const useCustomerCart = () => {
     }, [cart, detailedCart])
 
     return {
+        cart: cart,
         detailedCart: detailedCart,
         totalCount: totalCount,
         totalPrice: totalPrice,

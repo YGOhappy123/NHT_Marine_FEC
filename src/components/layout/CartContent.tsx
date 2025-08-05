@@ -39,7 +39,7 @@ const CartContent = ({ isLoading, detailedCart, updateCartItemMutation, deleteCa
                 <div className="flex flex-col gap-3">
                     {detailedCart.items.map(item => (
                         <div key={item.productItemId} className="hover:bg-muted/80 flex items-start gap-6 p-3">
-                            <Avatar className="size-20 rounded-full">
+                            <Avatar className="size-20 rounded-lg">
                                 <AvatarImage src={item.product.imageUrl} alt={item.product.rootProduct.name} />
                             </Avatar>
 

@@ -4,13 +4,11 @@ import { AxiosInstance } from 'axios'
 export interface AppState {
     cart: ICustomerCart | null
     addresses: ICustomerAddress[]
-    orderNote: string
 }
 
 const initialState: AppState = {
     cart: null,
-    addresses: [],
-    orderNote: ''
+    addresses: []
 }
 
 const actionTypes = {
@@ -98,9 +96,6 @@ export const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        setOrderNote: (state, { payload }: { payload: string }) => {
-            state.orderNote = payload
-        },
         resetAppState: () => {
             return initialState
         }
@@ -112,5 +107,5 @@ export const appSlice = createSlice({
     }
 })
 
-export const { setOrderNote, resetAppState } = appSlice.actions
+export const { resetAppState } = appSlice.actions
 export default appSlice.reducer

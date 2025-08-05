@@ -16,6 +16,9 @@ export const RES_MESSAGE_MAPPING = {
     UPLOAD_IMAGE_FAILED: 'Tải ảnh lên thất bại.',
     DELETE_IMAGE_FAILED: 'Xóa ảnh thất bại.',
     EMAIL_VERIFICATION_FAILED: 'Email chưa được xác thực.',
+    QUANTITY_EXCEED_CURRENT_STOCK: 'Số lượng vượt quá tồn kho',
+    CART_NOT_FOUND: 'Không tìm thấy giỏ hàng',
+    CART_ITEM_NOT_FOUND: 'Không tìm thấy sản phẩm',
 
     SIGN_IN_SUCCESSFULLY: 'Đăng nhập thành công.',
     SIGN_UP_SUCCESSFULLY: 'Đăng ký thành công.',
@@ -27,7 +30,10 @@ export const RES_MESSAGE_MAPPING = {
     RESET_PASSWORD_SUCCESSFULLY: 'Đặt lại mật khẩu thành công.',
     CHANGE_PASSWORD_SUCCESSFULLY: 'Thay đổi mật khẩu thành công.',
     UPLOAD_IMAGE_SUCCESSFULLY: 'Tải ảnh lên thành công.',
-    DELETE_IMAGE_SUCCESSFULLY: 'Xóa ảnh thành công.'
+    DELETE_IMAGE_SUCCESSFULLY: 'Xóa ảnh thành công.',
+    ADD_TO_CART_SUCCESSFULLY: 'Thêm vào giỏ hàng thành công',
+    UPDATE_CART_SUCCESSFULLY: 'Cập nhật giỏ hàng thành công',
+    RESET_CART_SUCCESSFULLY: 'Đặt lại giỏ hàng thành công'
 }
 
 export const getMappedMessage = (originalMessage: string) => {

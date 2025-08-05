@@ -44,3 +44,5 @@ export const AUTH_CAROUSEL_VIDEOS = [
         type: 'video/mp4'
     }
 ]
+
+export const PHONE_REGEX = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/

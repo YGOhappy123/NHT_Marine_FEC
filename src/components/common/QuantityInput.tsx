@@ -31,14 +31,30 @@ const QuantityInput = ({ isLoading, initValue, maximum, onChange }: QuantityInpu
     }
 
     return (
-        <div className="flex items-center rounded-md border-2">
-            <Button variant="ghost" size="icon" disabled={isLoading} onClick={handleIncrease}>
-                <Minus />
-            </Button>
-            {quantity.toString().padStart(2, '0')}
-            <Button variant="ghost" size="icon" disabled={isLoading} onClick={handleDecrease}>
-                <Plus />
-            </Button>
+        <div className="flex w-[100px] items-center justify-between rounded-md border-2">
+            {maximum === 0 && (
+                <Button variant="secondary" disabled>
+                    Hết hàng
+                </Button>
+            )}
+
+            {maximum > 0 && maximum < initValue && (
+                <Button variant="secondary" className="w-full" onClick={() => onChange(maximum)}>
+                    Giảm về {maximum.toString().padStart(2, '0')}
+                </Button>
+            )}
+
+            {maximum >= initValue && (
+                <>
+                    <Button variant="ghost" size="icon" disabled={isLoading} onClick={handleIncrease}>
+                        <Minus />
+                    </Button>
+                    {quantity.toString().padStart(2, '0')}
+                    <Button variant="ghost" size="icon" disabled={isLoading} onClick={handleDecrease}>
+                        <Plus />
+                    </Button>
+                </>
+            )}
         </div>
     )
 }

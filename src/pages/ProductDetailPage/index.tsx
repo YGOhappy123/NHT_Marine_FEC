@@ -15,6 +15,7 @@ import cartService from '@/services/cartService'
 import ProductImagesDisplay from '@/pages/ProductDetailPage/ProductImagesDisplay'
 import ProductStaticInfoDisplay from '@/pages/ProductDetailPage/ProductStaticInfoDisplay'
 import ProductNotFound from '@/pages/ProductDetailPage/ProductNotFound'
+import CategoryBreadcrumb from '@/pages/ProductDetailPage/CategoryBreadcrumb'
 
 const ProductDetailPage = () => {
     useTitle('NHT Marine | Chi tiết sản phẩm')
@@ -85,6 +86,9 @@ const ProductDetailPage = () => {
         <section className="bg-background flex w-full justify-center">
             <div className="max-w-container flex w-full flex-col items-center justify-between px-4 py-24">
                 <h2 className="font-[Dancing_Script] text-4xl capitalize">Chi tiết sản phẩm</h2>
+                <div className="mt-11 w-full">
+                    <CategoryBreadcrumb categoryId={product?.categoryId} />
+                </div>
                 <div className="mt-11 flex w-full justify-center">
                     {getProductDetailQuery.isLoading && <Skeleton className="h-[200px] w-full" />}
 
