@@ -28,13 +28,13 @@ const authService = () => {
             axios.post<IResponseData<LoginResponse>>('/auth/sign-in', account),
         onError: onError,
         onSuccess: res => {
-            const redirectPath = cookies.get('redirect_path') || '/'
+            const redirectPath = cookies.get('redirect_path_fec') || '/'
             const { user, accessToken, refreshToken } = res.data.data
-            cookies.set('access_token', accessToken, {
+            cookies.set('access_token_fec', accessToken, {
                 path: '/',
                 expires: new Date(dayjs(Date.now()).add(30, 'day').toISOString())
             })
-            cookies.set('refresh_token', refreshToken, {
+            cookies.set('refresh_token_fec', refreshToken, {
                 path: '/',
                 expires: new Date(dayjs(Date.now()).add(30, 'day').toISOString())
             })
@@ -52,13 +52,13 @@ const authService = () => {
             axios.post<IResponseData<LoginResponse>>('/auth/sign-up', data),
         onError: onError,
         onSuccess: res => {
-            const redirectPath = cookies.get('redirect_path') || '/'
+            const redirectPath = cookies.get('redirect_path_fec') || '/'
             const { user, accessToken, refreshToken } = res.data.data
-            cookies.set('access_token', accessToken, {
+            cookies.set('access_token_fec', accessToken, {
                 path: '/',
                 expires: new Date(dayjs(Date.now()).add(30, 'day').toISOString())
             })
-            cookies.set('refresh_token', refreshToken, {
+            cookies.set('refresh_token_fec', refreshToken, {
                 path: '/',
                 expires: new Date(dayjs(Date.now()).add(30, 'day').toISOString())
             })
@@ -109,13 +109,13 @@ const authService = () => {
         mutationFn: (googleAccessToken: string) => axios.post('/auth/google-auth', { googleAccessToken }),
         onError: onError,
         onSuccess: res => {
-            const redirectPath = cookies.get('redirect_path') || '/'
+            const redirectPath = cookies.get('redirect_path_fec') || '/'
             const { user, accessToken, refreshToken } = res.data.data
-            cookies.set('access_token', accessToken, {
+            cookies.set('access_token_fec', accessToken, {
                 path: '/',
                 expires: new Date(dayjs(Date.now()).add(30, 'day').toISOString())
             })
-            cookies.set('refresh_token', refreshToken, {
+            cookies.set('refresh_token_fec', refreshToken, {
                 path: '/',
                 expires: new Date(dayjs(Date.now()).add(30, 'day').toISOString())
             })
