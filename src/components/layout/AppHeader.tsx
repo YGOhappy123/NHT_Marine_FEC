@@ -30,6 +30,14 @@ const AppHeader = () => {
 
                     {isLogged && (
                         <>
+                            <CustomerCart
+                                trigger={
+                                    <Button variant="ghost" size="icon">
+                                        <ShoppingCart />
+                                    </Button>
+                                }
+                            />
+
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -38,14 +46,6 @@ const AppHeader = () => {
                             >
                                 <MessageCircleMore />
                             </Button>
-
-                            <CustomerCart
-                                trigger={
-                                    <Button variant="ghost" size="icon">
-                                        <ShoppingCart />
-                                    </Button>
-                                }
-                            />
 
                             {user?.avatar && (
                                 <Button

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CircleDollarSign, ListRestart } from 'lucide-react'
+import { Badge, CircleDollarSign, ListRestart } from 'lucide-react'
 import {
     Sheet,
     SheetContent,
@@ -29,7 +29,14 @@ const CustomerCart = ({ trigger }: CustomerCartProps) => {
 
     return (
         <Sheet>
-            <SheetTrigger asChild>{trigger}</SheetTrigger>
+            <SheetTrigger asChild>
+                <div className="relative">
+                    {trigger}
+                    <div className="bg-destructive dark:bg-destructive/60 pointer-events-none absolute top-0 right-0 flex h-4 w-6 translate-x-[30%] -translate-y-[30%] items-center justify-center rounded-full">
+                        <span className="text-xs font-medium text-white">{totalCount}</span>
+                    </div>
+                </div>
+            </SheetTrigger>
             <SheetContent className="gap-0 md:max-w-[500px]! xl:max-w-[600px]!">
                 <SheetHeader>
                     <SheetTitle>Giỏ hàng của bạn</SheetTitle>

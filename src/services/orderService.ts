@@ -6,7 +6,7 @@ const orderService = () => {
     const axios = useAxiosIns()
 
     const verifyCouponMutation = useMutation({
-        mutationFn: (code: string) => axios.post<IResponseData<ICoupon>>('/coupons/verify', { code }),
+        mutationFn: (code: string) => axios.post<IResponseData<ICoupon>>('/orders/verify-coupon', { code }),
         onError: onError
     })
 
