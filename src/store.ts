@@ -5,7 +5,7 @@ import authReducer from '@/slices/authSlice'
 import appReducer from '@/slices/appSlice'
 
 const persistConfig = {
-    key: 'root',
+    key: 'nht_marine_fec',
     version: 1,
     storage,
     whitelist: ['auth', 'app']
