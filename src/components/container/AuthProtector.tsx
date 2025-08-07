@@ -13,7 +13,7 @@ type AuthProtectorProps = {
 }
 
 const AuthProtector = ({ redirect = '/', children }: AuthProtectorProps) => {
-    const accessToken = cookies.get('access_token_fec') || localStorage.getItem('access_token')
+    const accessToken = cookies.get('access_token_fec') || localStorage.getItem('access_token_fec')
     const auth = useSelector((state: RootState) => state.auth as AuthState)
     const location = useLocation()
     const dispatch = useDispatch()

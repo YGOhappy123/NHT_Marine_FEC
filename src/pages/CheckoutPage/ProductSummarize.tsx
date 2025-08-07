@@ -102,6 +102,7 @@ const ProductSummarize = ({ items, coupon, handleVerifyCoupon, handleClearCoupon
                     </div>
                 ))}
             </div>
+
             <Separator className="my-4" />
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full gap-4">
@@ -132,6 +133,7 @@ const ProductSummarize = ({ items, coupon, handleVerifyCoupon, handleClearCoupon
                     </Button>
                 </form>
             </Form>
+
             <Separator className="my-4" />
             <div className="flex flex-col gap-2">
                 <div className="flex justify-between font-medium">
@@ -146,6 +148,7 @@ const ProductSummarize = ({ items, coupon, handleVerifyCoupon, handleClearCoupon
                     </div>
                 )}
             </div>
+
             <Separator className="my-4" />
             <div className="text-primary flex justify-between text-lg font-semibold">
                 <span>Tổng cộng: </span> {formatCurrency(originalTotal - promotionDiscount - couponDiscount)}

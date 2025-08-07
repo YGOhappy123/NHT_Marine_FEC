@@ -119,11 +119,11 @@ const CheckoutForm = ({ handlePlaceOrder }: CheckoutFormProps) => {
                                         {[
                                             {
                                                 value: 'takeFromShop',
-                                                title: 'Nhận trực tiếp tại shop.'
+                                                title: 'Nhận trực tiếp tại cửa hàng.'
                                             },
                                             {
                                                 value: 'delivery',
-                                                title: 'Vận chuyển qua bưu điện.'
+                                                title: 'Vận chuyển qua đường bưu điện.'
                                             }
                                         ].map(item => (
                                             <SelectItem key={item.value} value={item.value}>

@@ -1,4 +1,4 @@
-export const RES_MESSAGE_MAPPING = {
+const ERROR_MESSAGES = {
     NO_CREDENTIALS: 'Không có thông tin xác thực.',
     INVALID_TOKEN: 'Token không hợp lệ',
     FORBIDDEN: 'Bạn không có quyền thực hiện hành động này.',
@@ -18,8 +18,10 @@ export const RES_MESSAGE_MAPPING = {
     EMAIL_VERIFICATION_FAILED: 'Email chưa được xác thực.',
     QUANTITY_EXCEED_CURRENT_STOCK: 'Số lượng vượt quá tồn kho',
     CART_NOT_FOUND: 'Không tìm thấy giỏ hàng',
-    CART_ITEM_NOT_FOUND: 'Không tìm thấy sản phẩm',
+    CART_ITEM_NOT_FOUND: 'Không tìm thấy sản phẩm'
+}
 
+const SUCCESS_MESSAGES = {
     SIGN_IN_SUCCESSFULLY: 'Đăng nhập thành công.',
     SIGN_UP_SUCCESSFULLY: 'Đăng ký thành công.',
     REFRESH_TOKEN_SUCCESSFULLY: 'Làm mới token thành công.',
@@ -34,6 +36,11 @@ export const RES_MESSAGE_MAPPING = {
     ADD_TO_CART_SUCCESSFULLY: 'Thêm vào giỏ hàng thành công',
     UPDATE_CART_SUCCESSFULLY: 'Cập nhật giỏ hàng thành công',
     RESET_CART_SUCCESSFULLY: 'Đặt lại giỏ hàng thành công'
+}
+
+export const RES_MESSAGE_MAPPING = {
+    ...ERROR_MESSAGES,
+    ...SUCCESS_MESSAGES
 }
 
 export const getMappedMessage = (originalMessage: string) => {

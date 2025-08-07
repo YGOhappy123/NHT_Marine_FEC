@@ -19,7 +19,7 @@ const CheckoutPage = () => {
     }, [])
 
     const { isLoading, detailedCart, totalCount, cart } = useCustomerCart()
-    const { verifyCouponMutation, placeOrderMutation } = orderService()
+    const { verifyCouponMutation, placeOrderMutation } = orderService({ enableFetching: false })
     const [coupon, setCoupon] = useState<ICoupon | null>(null)
     const navigate = useNavigate()
     const dispatch = useDispatch()
