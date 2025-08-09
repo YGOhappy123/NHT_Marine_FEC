@@ -24,7 +24,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                     </p>
                     <p className="text-muted-foreground break-words whitespace-normal">
                         <span className="font-medium">Phân loại: </span>
-                        {row.original.productItem.attribute.map(attr => `${attr.variant}: ${attr.option}`).join(', ')}
+                        {row.original.productItem.attributes.map(attr => `${attr.variant}: ${attr.option}`).join(', ')}
                     </p>
                 </div>
             ),

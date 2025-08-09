@@ -8,7 +8,7 @@ type DetailedProductItem = {
     productItemId: number
     imageUrl: string
     price: number
-    attribute: { variant: string; option: string }[]
+    attributes: { variant: string; option: string }[]
     rootProduct: {
         rootProductId: number
         name: string
