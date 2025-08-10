@@ -12,7 +12,7 @@ const DESCRIPTION_IMAGES = [
 
 const DescriptionSection = () => {
     return (
-        <section className="flex flex-col items-center bg-ivory px-5 py-[100px]">
+        <section className="flex flex-col items-center  px-5 py-[100px]">
             <div className="flex w-full max-w-container flex-col gap-9">
                 <div className="flex items-center justify-between">
                     <div className="flex max-w-[70%] flex-col gap-5">
