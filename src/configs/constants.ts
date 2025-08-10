@@ -10,7 +10,7 @@ type NavigationTab = {
 
 export const NAVIGATION_TABS: NavigationTab[] = [
     { label: 'trang chủ', href: '/', Icon: House },
-    { label: 'giới thiệu', href: '/#about-us', Icon: Users },
+    { label: 'giới thiệu', href: '/about-us', Icon: Users },
     { label: 'sản phẩm', href: '/products', Icon: ScanBarcode },
     { label: 'tư vấn', href: '/profile/chat', Icon: MessageCircleMore, authRequired: true },
     { label: 'profile', href: '/profile/edit', Icon: PencilLine, authRequired: true }

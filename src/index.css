@@ -212,3 +212,25 @@ input:-webkit-autofill:active {
 .bg-muted {
     background-color: hsl(240 3.7% 15.9%);
 }
+
+/* about-us */
+.bg-ivory {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 236 220 / var(--tw-bg-opacity, 1)) ;
+}
+.font-semibold {
+    font-weight: 600;
+}
+.text-ivory {
+    --tw-text-opacity: 1;
+    color: rgb(243 236 220 / var(--tw-text-opacity, 1)) ;
+}
+.text-secondary {
+    --tw-text-opacity: 1;
+    color: rgb(163 177 138 / var(--tw-text-opacity, 1)) ;
+}
+.bg-accent {
+    --tw-bg-opacity: 1;
+    background-color: rgb(52 78 65 / var(--tw-bg-opacity, 1)) ;
+}
+
