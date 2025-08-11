@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { Play } from 'lucide-react'
 import { INTRODUCTION_VIDEO_URL } from '@/configs/constants'
 import BackgroundPoster from '@/components/ui/BackgroundPoster'
 
@@ -14,52 +13,46 @@ const HomeHeroSection = () => {
                 size="big"
             />
 
-            <div className="absolute bottom-[100px] left-1/2 grid w-full max-w-container -translate-x-1/2 grid-cols-5 gap-[60px] px-5 2xl:bottom-[200px]">
-                <div className="col-span-3 flex flex-col gap-6">
-                    {/* Tiêu đề phụ */}
-                    <p className="font-semibold uppercase text-sky-500 drop-shadow-md text-xl">
+            <div className="max-w-container absolute top-1/2 left-1/2 grid w-full -translate-1/2 grid-cols-6 gap-[60px] px-5 lg:grid-cols-5">
+                <div className="col-span-4 flex flex-col gap-4 lg:col-span-3 lg:gap-6">
+                    <p className="text-lg font-semibold text-sky-500 uppercase drop-shadow-md lg:text-xl">
                         Thế giới Cá Cảnh – Vẻ đẹp từ đại dương
                     </p>
 
-                    {/* Tiêu đề chính */}
-                    <p className="font-serif text-5xl font-semibold capitalize leading-[1.4] text-white drop-shadow-lg">
+                    <p className="font-serif text-4xl leading-[1.4] font-semibold text-white capitalize drop-shadow-lg lg:text-5xl">
                         Khám phá <span className="text-sky-500">cá cảnh</span>
-                    </p>
-
-                    <p className="font-serif text-5xl font-semibold capitalize leading-[1.4] text-white drop-shadow-lg">
+                        <br />
                         Ngay hôm nay
                     </p>
 
-                    {/* Mô tả ngắn */}
-                    <p className="font-medium capitalize text-white drop-shadow-md text-lg">
-                        Mang sắc màu và sự sống động của biển cả vào ngôi nhà bạn – cá cảnh khỏe mạnh, đẹp và đa dạng loài.
+                    <p className="text-base font-medium text-white capitalize drop-shadow-md lg:text-lg">
+                        Mang sắc màu và sự sống động của biển cả vào ngôi nhà bạn – cá cảnh khỏe mạnh, đẹp và đa dạng
+                        loài.
                     </p>
 
-
-                    {/* Nút */}
-                    <div className="flex items-center gap-6">
+                    <div className="grid grid-cols-2 items-center gap-6">
                         <button
-                            className="flex h-[60px] w-[280px] items-center justify-center rounded-full bg-sky-400 font-semibold uppercase tracking-widest text-white hover:bg-sky-500 drop-shadow-md"
+                            className="flex h-[45px] items-center justify-center rounded-full bg-sky-400 text-sm font-semibold tracking-widest text-white uppercase drop-shadow-md hover:bg-sky-500 lg:h-[60px] lg:text-base"
                             onClick={() => navigate('/about-us')}
                         >
                             Giới thiệu cửa hàng
                         </button>
                         <button
-                            className="flex h-[60px] w-[230px] items-center justify-center rounded-full bg-white font-semibold uppercase tracking-widest text-sky-500 hover:bg-white/90 drop-shadow-md"
+                            className="flex h-[45px] items-center justify-center rounded-full bg-white text-sm font-semibold tracking-widest text-sky-500 uppercase drop-shadow-md hover:bg-white/90 lg:h-[60px] lg:text-base"
                             onClick={() => navigate('/products')}
                         >
-                            Xem cá sản phẩm
+                            Xem các sản phẩm
                         </button>
                     </div>
                 </div>
 
-                {/* Video giới thiệu */}
                 <div className="col-span-2 flex items-center justify-center">
                     <Link
-                        className="flex aspect-square w-[90px] cursor-pointer items-center justify-center rounded-full bg-sky-300 hover:bg-sky-400 drop-shadow-lg"
+                        className="flex aspect-square w-[70px] cursor-pointer items-center justify-center rounded-full bg-sky-300 drop-shadow-lg hover:bg-sky-400 lg:w-[90px]"
                         to={INTRODUCTION_VIDEO_URL}
                     >
-                        <FontAwesomeIcon icon={faPlay} className="text-white" size="2xl" />
+                        {/* <FontAwesomeIcon icon={faPlay} className="text-white" size="2xl" /> */}
+                        <Play className="lg:h-8 lg:w-8" />
                     </Link>
                 </div>
             </div>

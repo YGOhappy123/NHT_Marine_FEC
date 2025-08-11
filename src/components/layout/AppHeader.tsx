@@ -26,9 +26,7 @@ const AppHeader = () => {
                 <HeaderSearchbar />
 
                 <div className="flex items-center gap-2">
-                    <ThemeToggler />
-
-                    {isLogged && (
+                    {isLogged ? (
                         <>
                             <CustomerCart
                                 trigger={
@@ -38,14 +36,16 @@ const AppHeader = () => {
                                 }
                             />
 
-                            <Button
+                            <ThemeToggler />
+
+                            {/* <Button
                                 variant="ghost"
                                 size="icon"
                                 className="hidden lg:inline-flex"
                                 onClick={() => navigate('/profile/chat')}
                             >
                                 <MessageCircleMore />
-                            </Button>
+                            </Button> */}
 
                             {user?.avatar && (
                                 <Button
@@ -58,6 +58,8 @@ const AppHeader = () => {
                                 </Button>
                             )}
                         </>
+                    ) : (
+                        <ThemeToggler />
                     )}
 
                     <Button

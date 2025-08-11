@@ -50,7 +50,7 @@ const CartContent = ({ isLoading, detailedCart, updateCartItemMutation, deleteCa
                                 <div className="text-muted-foreground text-sm">
                                     <p className="line-clamp-1">
                                         <span className="font-medium">Phân loại: </span>
-                                        {item.product.attribute
+                                        {item.product.attributes
                                             .map(attr => `${attr.variant}: ${attr.option}`)
                                             .join(', ')}
                                     </p>

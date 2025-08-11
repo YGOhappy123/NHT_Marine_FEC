@@ -29,16 +29,16 @@ export const sidebarGroups: SidebarGroupData[] = [
             }
         ]
     },
-    {
-        title: 'Hỗ trợ khách hàng',
-        items: [
-            {
-                title: 'Trò chuyện trực tuyến',
-                icon: MessageCircleMore,
-                url: '/profile/chat'
-            }
-        ]
-    },
+    // {
+    //     title: 'Hỗ trợ khách hàng',
+    //     items: [
+    //         {
+    //             title: 'Trò chuyện trực tuyến',
+    //             icon: MessageCircleMore,
+    //             url: '/profile/chat'
+    //         }
+    //     ]
+    // },
     {
         title: 'Đơn hàng và vận chuyển',
         items: [
@@ -46,12 +46,12 @@ export const sidebarGroups: SidebarGroupData[] = [
                 title: 'Đơn hàng của tôi',
                 icon: ShoppingCart,
                 url: '/profile/orders'
-            },
-            {
-                title: 'Danh sách địa chỉ',
-                icon: MapPin,
-                url: '/profile/locations'
             }
+            // {
+            //     title: 'Danh sách địa chỉ',
+            //     icon: MapPin,
+            //     url: '/profile/locations'
+            // }
         ]
     }
 ]

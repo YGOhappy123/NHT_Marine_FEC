@@ -10,7 +10,7 @@ const AboutPage = () => {
     }, [])
 
     return (
-        <div className="-mt-[150px]">
+        <div>
             <AboutHeroSection />
             <DescriptionSection />
         </div>

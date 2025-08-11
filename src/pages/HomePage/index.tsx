@@ -10,12 +10,13 @@ const HomePage = () => {
         window.scrollTo(0, 0)
     }, [])
 
-    return <div className="-mt-[150px]">
-        <HomeHeroSection />
-        <StatisticSection />
-        <DescriptionSection />
-        
-    </div>
+    return (
+        <div>
+            <HomeHeroSection />
+            <StatisticSection />
+            <DescriptionSection />
+        </div>
+    )
 }
 
 export default HomePage

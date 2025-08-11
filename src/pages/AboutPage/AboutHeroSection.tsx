@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { ChevronRight } from 'lucide-react'
 import BackgroundPoster from '@/components/ui/BackgroundPoster'
 
 const AboutHeroSection = () => {
@@ -13,21 +12,25 @@ const AboutHeroSection = () => {
                 size="small"
             />
 
-            <div className="absolute bottom-[100px] left-1/2 grid w-full max-w-container -translate-x-1/2 grid-cols-5 gap-[60px] px-5 2xl:bottom-[150px]">
-                <div className="col-span-3 flex flex-col gap-6">
-                    <p className="flex items-center gap-3 font-semibold uppercase text-secondary">
+            <div className="max-w-container absolute top-1/2 left-1/2 grid w-full -translate-1/2 grid-cols-6 gap-[60px] px-5 lg:grid-cols-5">
+                <div className="col-span-4 flex flex-col gap-4 lg:col-span-3 lg:gap-6">
+                    <div className="flex items-center gap-2 text-lg font-semibold text-sky-500 uppercase drop-shadow-md lg:text-xl">
                         <span className="cursor-pointer" onClick={() => navigate('/')}>
                             Trang chủ
                         </span>
-                        <FontAwesomeIcon icon={faCaretRight} />
-                        <span className="text-ivory">Giới thiệu</span>
+                        <ChevronRight />
+                        <span className="text-primary-foreground/75">Giới thiệu</span>
+                    </div>
+
+                    <p className="font-serif text-4xl leading-[1.4] font-semibold text-white capitalize drop-shadow-lg lg:text-5xl">
+                        Xin chào, <span className="text-sky-500">Chúng tôi</span>
+                        <br />
+                        là <span className="text-sky-500">NHT Marine</span>!
                     </p>
-                    <p className="font-serif text-5xl font-semibold capitalize leading-[1.4] text-white drop-shadow-lg">
-                        Xin chào, <span className="text-sky-500">Chúng tôi</span> là <span className="text-sky-500">NHT Marine</span>
-                    </p>
-                    <p className="font-medium capitalize text-white drop-shadow-md text-lg">
-                        Tất cả những mặt hàng đáp ứng nhu cầu về đam mê về cá cảnh đều có thể được
-                        tìm thấy tại NHT Marine!
+
+                    <p className="text-base font-medium text-white capitalize drop-shadow-md lg:text-lg">
+                        Tất cả những mặt hàng đáp ứng nhu cầu về đam mê về cá cảnh đều có thể được tìm thấy tại NHT
+                        Marine!
                     </p>
                 </div>
             </div>

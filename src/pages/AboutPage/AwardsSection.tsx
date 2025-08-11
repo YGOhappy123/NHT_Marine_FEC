@@ -1,6 +1,5 @@
+import { Award, CalendarCheck } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAward, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 type AwardsSectionProps = {
     isSummarized?: boolean
@@ -9,7 +8,11 @@ type AwardsSectionProps = {
 
 const AwardsSection = ({ containerClassNames }: AwardsSectionProps) => {
     return (
-        <div className={twMerge(`flex w-full max-w-container gap-[60px] bg-ivory ${containerClassNames}`)}>
+        <div
+            className={twMerge(
+                `max-w-container flex w-full flex-col items-center gap-[60px] lg:flex-row ${containerClassNames}`
+            )}
+        >
             <div className="relative grid grid-cols-[200px_190px_200px] grid-rows-[100px_400px_100px]">
                 <div className="col-span-2 col-start-1 row-span-2 row-start-1">
                     <div
@@ -19,7 +22,7 @@ const AwardsSection = ({ containerClassNames }: AwardsSectionProps) => {
                         }}
                     ></div>
                 </div>
-                <div className="col-span-2 col-start-2 row-span-2 row-start-2 rounded-3xl bg-ivory p-[10px] shadow-lg">
+                <div className="bg-background col-span-2 col-start-2 row-span-2 row-start-2 rounded-3xl p-4 shadow-lg">
                     <div
                         className="h-full rounded-2xl bg-cover bg-center"
                         style={{
@@ -27,27 +30,30 @@ const AwardsSection = ({ containerClassNames }: AwardsSectionProps) => {
                         }}
                     ></div>
                 </div>
-                <div className="absolute bottom-[50px] left-[50px] flex flex-col items-center gap-3 rounded-3xl bg-accent p-6 font-serif">
-                    <span className="text-5xl font-semibold text-secondary">
-                        99<sup className="ml-1 text-xl">%</sup>
+                <div className="bg-secondary absolute bottom-[50px] left-[80px] flex flex-col items-center gap-3 rounded-3xl p-6 font-serif">
+                    <span className="text-primary/80 text-3xl font-semibold">
+                        Trên 90<sup className="ml-1 text-xl">%</sup>
                     </span>
-                    <span className="text-xl font-semibold capitalize text-ivory">Khách hài lòng</span>
+                    <span className="text-ivory text-xl font-semibold capitalize">Khách hài lòng</span>
                 </div>
             </div>
+
             <div className="flex flex-1 flex-col justify-center gap-[30px]">
-                <p className="font-semibold uppercase tracking-widest text-secondary">Hệ cung cấp cá cảnh hiện đại nhất</p>
-                <p className="font-serif text-5xl font-semibold leading-[1.2]">
+                <p className="text-primary/80 font-semibold tracking-widest uppercase">
+                    Hệ cung cấp cá cảnh hiện đại nhất
+                </p>
+                <p className="font-serif text-5xl leading-[1.2] font-semibold">
                     Chúng tôi tự tin mang cho bạn cảm giác thích thú, thoả mãn, hiện đại với giá cả phải chăng.
                 </p>
-                <p className="font-semibold text-[#6E6E6E]">
+                <p className="text-muted-foreground font-semibold">
                     Cung cấp dịch vụ tốt nhất, hứa hẹn sẽ giúp bạn tìm được sản phẩm mơ ước cho đam mê cá cảnh của mình.
                 </p>
-                <div className="flex items-center gap-3">
-                    <FontAwesomeIcon icon={faAward} className="text-secondary" size="2x" />
+                <div className="text-primary/60 flex items-center gap-3">
+                    <Award size={32} />
                     <p className="text-xl font-semibold">Thuộc top 10 cửa hàng cá cảnh tốt nhất Việt Nam năm 2024</p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <FontAwesomeIcon icon={faCalendarAlt} className="text-secondary" size="2x" />
+                <div className="text-primary/60 -mt-3 flex items-center gap-3">
+                    <CalendarCheck size={32} />
                     <p className="text-xl font-semibold">Với hơn 5 năm hoạt động trong lĩnh vực cá cảnh</p>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import {
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import categoryService from '@/services/categoryService'
+import { Fish, ShoppingBag } from 'lucide-react'
 
 const CategoryNavbar = () => {
     const navigate = useNavigate()
@@ -18,15 +19,16 @@ const CategoryNavbar = () => {
         <nav className="bg-background sticky top-0 z-[10] flex w-full justify-center border-b shadow-md">
             <div className="max-w-container flex w-full items-center justify-between gap-10 p-4 lg:gap-15 xl:gap-25">
                 <div className="flex flex-1 flex-wrap items-center justify-center gap-4 lg:gap-6 xl:gap-8">
-                    <Button size="lg" className="rounded-full" onClick={() => navigate('/')}>
-                        Trang chủ
-                    </Button>
-                    <Button size="lg" className="rounded-full" onClick={() => navigate('/about-us')}>
-                        Giới thiệu
-                    </Button>
-                    <Button size="lg" className="rounded-full" onClick={() => navigate('/products')}>
-                        Tất cả sản phẩm
-                    </Button>
+                    <div className="mr-auto grid grid-cols-2 justify-center gap-4">
+                        <Button size="lg" className="rounded-full" onClick={() => navigate('/about-us')}>
+                            <ShoppingBag />
+                            Giới thiệu cửa hàng
+                        </Button>
+                        <Button size="lg" className="rounded-full" onClick={() => navigate('/products')}>
+                            <Fish />
+                            Tất cả sản phẩm
+                        </Button>
+                    </div>
 
                     {categories.map(category => (
                         <DropdownMenu key={category.categoryId}>

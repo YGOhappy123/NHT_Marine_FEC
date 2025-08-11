@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+import { ArrowRight, Quote } from 'lucide-react'
 import HighlightedServicesSection from '@/pages/HomePage/HighlightedServicesSection'
-
 
 const DESCRIPTION_IMAGES = [
     'https://media.istockphoto.com/id/2156738236/photo/koi-fish-cluster-together-underwater-fishes-nishikigoi-koi-asian-japanese-wildlife-colorful.webp?a=1&b=1&s=612x612&w=0&k=20&c=W5H0eNOZ3ByL-LPh6VxlT4qrkrvKI-pgNrBKovmPIWc=',
@@ -12,37 +10,40 @@ const DESCRIPTION_IMAGES = [
 
 const DescriptionSection = () => {
     return (
-        <section className="flex flex-col items-center  px-5 py-[100px]">
-            <div className="flex w-full max-w-container flex-col gap-9">
-                <div className="flex items-center justify-between">
-                    <div className="flex max-w-[70%] flex-col gap-5">
-                        <p className="font-semibold uppercase tracking-widest text-secondary">Vài nét về chúng tôi</p>
-                        <p className="text-balance font-serif text-5xl font-semibold leading-[1.4]">
+        <section className="flex flex-col items-center px-5 py-[100px]">
+            <div className="max-w-container flex w-full flex-col gap-9">
+                <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
+                    <div className="flex flex-col gap-5 lg:max-w-[70%]">
+                        <p className="text-primary/80 font-semibold tracking-widest uppercase">Vài nét về chúng tôi</p>
+                        <p className="font-serif text-5xl leading-[1.4] font-semibold text-balance">
                             Mặt hàng với giá cả phải chăng cùng các sản phẩm hữu ích cho cá cảnh
                         </p>
                     </div>
                     <Link to="/products">
-                        <div className="font-semibold uppercase tracking-widest text-primary">
-                            Sản phẩm dành cho bạn <FontAwesomeIcon icon={faArrowRight} />
+                        <div className="text-primary flex items-center gap-2 font-semibold tracking-widest uppercase">
+                            Sản phẩm dành cho bạn <ArrowRight />
                         </div>
                     </Link>
                 </div>
-                <div className="grid grid-cols-4 gap-[30px] pt-10">
-                    <div className="relative flex flex-col items-start gap-5 pl-[50px] pr-5">
+                <div className="grid grid-cols-4 gap-3 pt-10 lg:gap-8">
+                    <div className="relative flex flex-col items-start gap-3 pr-5 pl-[30px] lg:gap-5 lg:pl-[50px]">
                         <div
-                            className="absolute bottom-0 left-0 rounded-t-3xl bg-accent"
+                            className="bg-primary/80 absolute bottom-0 left-0 rounded-t-3xl"
                             style={{
                                 width: 'calc(100% + 120px)',
                                 height: 'calc(100% + 40px)'
                             }}
                         ></div>
-                        <FontAwesomeIcon icon={faQuoteLeft} className="z-[1] text-[#DADADA]" size="3x" />
-                        <p className="z-[1] text-lg font-semibold italic text-white/75 xl:text-[22px] xl:leading-[1.2] 2xl:text-[26px] 2xl:leading-[1.3]">
+                        <Quote className="text-primary-foreground/75 z-[1] h-8 w-8 lg:h-12 lg:w-12" />
+                        <p className="text-primary-foreground/75 z-[1] text-lg font-semibold italic xl:text-[22px] xl:leading-[1.2] 2xl:text-[26px] 2xl:leading-[1.3]">
                             "NHT Marine! Natural Habitat, True beauty!"
                         </p>
                     </div>
                     {DESCRIPTION_IMAGES.map(imageUrl => (
-                        <div key={imageUrl} className="z-[1] h-[175px] rounded-t-3xl bg-ivory px-[10px] pt-[10px] lg:h-[200px]">
+                        <div
+                            key={imageUrl}
+                            className="bg-background z-[1] h-[175px] rounded-t-3xl px-[10px] pt-[10px] lg:h-[200px]"
+                        >
                             <div
                                 className="h-full rounded-t-2xl bg-cover bg-center"
                                 style={{
