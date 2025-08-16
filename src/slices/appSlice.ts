@@ -1,5 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { getMappedMessage } from '@/utils/resMessageMapping'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
+import { toast } from 'react-toastify'
+import toastConfig from '@/configs/toast'
 
 export interface AppState {
     cart: ICustomerCart | null
@@ -16,7 +19,11 @@ const actionTypes = {
     addCartItem: 'customers/addCartItem',
     updateCartItem: 'customers/updateCartItem',
     deleteCartItem: 'customers/deleteCartItem',
-    resetCart: 'customers/resetCart'
+    resetCart: 'customers/resetCart',
+    getAddresses: 'customer-addresses/getAddresses',
+    addAddress: 'customer-addresses/addAddress',
+    setAddressAsDefault: 'customer-addresses/setAddressAsDefault',
+    deleteAddress: 'customer-addresses/deleteCartItem'
 }
 
 export const getCartItems = createAsyncThunk(
@@ -92,6 +99,76 @@ export const resetCart = createAsyncThunk(
     }
 )
 
+export const getAddresses = createAsyncThunk(
+    actionTypes.getAddresses,
+    async ({ axios }: { axios: AxiosInstance }, { rejectWithValue }) => {
+        try {
+            const response = await axios.get<IResponseData<ICustomerAddress[]>>(
+                `/customers/address/my-addresses?sort=${JSON.stringify({ isDefault: 'DESC' })}`
+            )
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const addAddress = createAsyncThunk(
+    actionTypes.addAddress,
+    async (
+        {
+            axios,
+            recipientName,
+            phoneNumber,
+            city,
+            district,
+            ward,
+            addressLine
+        }: {
+            axios: AxiosInstance
+            recipientName: string
+            phoneNumber: string
+            city: string
+            district: string
+            ward: string
+            addressLine: string
+        },
+        { rejectWithValue }
+    ) => {
+        try {
+            const payload = { recipientName, phoneNumber, city, district, ward, addressLine }
+            const response = await axios.post<IResponseData<ICustomerCart>>('/customers/address', payload)
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const setAddressAsDefault = createAsyncThunk(
+    actionTypes.setAddressAsDefault,
+    async ({ axios, addressId }: { axios: AxiosInstance; addressId: number }, { rejectWithValue }) => {
+        try {
+            const response = await axios.patch<IResponseData<any>>(`/customers/address/${addressId}`)
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const deleteAddress = createAsyncThunk(
+    actionTypes.deleteAddress,
+    async ({ axios, addressId }: { axios: AxiosInstance; addressId: number }, { rejectWithValue }) => {
+        try {
+            const response = await axios.delete<IResponseData<any>>(`/customers/address/${addressId}`)
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 export const appSlice = createSlice({
     name: 'app',
     initialState,
@@ -101,9 +178,23 @@ export const appSlice = createSlice({
         }
     },
     extraReducers: builder => {
-        builder.addCase(getCartItems.fulfilled, (state, action) => {
-            state.cart = action.payload.data
-        })
+        builder
+            .addCase(getCartItems.fulfilled, (state, action) => {
+                state.cart = action.payload.data
+            })
+            .addCase(getAddresses.fulfilled, (state, action) => {
+                state.addresses = action.payload.data
+            })
+            .addMatcher(
+                action => action.type.startsWith('customer-addresses/'),
+                (_, action) => {
+                    const isSuccess = action.type.endsWith('/fulfilled')
+                    toast(
+                        getMappedMessage((action as PayloadAction<any>).payload?.message),
+                        toastConfig(isSuccess ? 'success' : 'error')
+                    )
+                }
+            )
     }
 })
 

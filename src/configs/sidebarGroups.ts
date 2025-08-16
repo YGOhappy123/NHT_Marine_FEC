@@ -46,12 +46,12 @@ export const sidebarGroups: SidebarGroupData[] = [
                 title: 'Đơn hàng của tôi',
                 icon: ShoppingCart,
                 url: '/profile/orders'
+            },
+            {
+                title: 'Danh sách địa chỉ',
+                icon: MapPin,
+                url: '/profile/addresses'
             }
-            // {
-            //     title: 'Danh sách địa chỉ',
-            //     icon: MapPin,
-            //     url: '/profile/locations'
-            // }
         ]
     }
 ]

@@ -7,8 +7,6 @@ declare global {
         items: ICartItem[]
     }
 
-    interface ICustomerAddress {}
-
     interface ICartItem {
         cartId: number
         productItemId: number

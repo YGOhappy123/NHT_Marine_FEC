@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { RootState } from '@/store'
-import orderService from '@/services/orderService'
 import CustomPagination from '@/pages/ProfileOrderPage/CustomPagination'
-import OrderCard from '@/pages/ProfileOrderPage/OrderCard'
 import OrderSummaryCard from '@/pages/ProfileOrderPage/OrderSummaryCard'
+import OrderCard from '@/pages/ProfileOrderPage/OrderCard'
+import orderService from '@/services/orderService'
 import formatCurrency from '@/utils/formatCurrency'
 
 const ProfileOrderPage = () => {

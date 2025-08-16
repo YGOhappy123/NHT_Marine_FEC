@@ -5,6 +5,7 @@ import ProfileLayout from '@/layouts/ProfileLayout'
 import ProfilePage from '@/pages/ProfileAccount/ProfilePage'
 import ChangePasswordPage from '@/pages/ProfileAccount/ChangePasswordPage'
 import ProfileOrderPage from '@/pages/ProfileOrderPage'
+import ProfileAddressPage from '@/pages/ProfileAddressPage'
 import ErrorPage from '@/pages/ErrorPage'
 
 const ProfileRoutes = [
@@ -32,6 +33,10 @@ const ProfileRoutes = [
             {
                 path: 'orders',
                 element: <ProfileOrderPage />
+            },
+            {
+                path: 'addresses',
+                element: <ProfileAddressPage />
             }
         ]
     }

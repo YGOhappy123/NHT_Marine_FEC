@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Fish, Home } from 'lucide-react'
+import { getCartItems } from '@/slices/appSlice'
 import useTitle from '@/hooks/useTitle'
+import useAxiosIns from '@/hooks/useAxiosIns'
 
 const ThankYouPage = () => {
     useTitle('NHT Marine | Tri Ân')
@@ -9,8 +12,14 @@ const ThankYouPage = () => {
         window.scrollTo(0, 0)
     }, [])
 
+    const axios = useAxiosIns()
     const { orderId } = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getCartItems({ axios }) as any)
+    }, [])
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-between gap-8 bg-[#FAFAFB] text-[#699282] lg:flex-row">

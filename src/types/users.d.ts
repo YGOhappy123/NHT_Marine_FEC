@@ -21,6 +21,19 @@ declare global {
         createdBy?: number
         createdByStaff?: Partial<IStaff> | string
     }
+
+    interface ICustomerAddress {
+        addressId: number
+        customerId: number
+        recipientName: string
+        phoneNumber: string
+        city: string
+        district: string
+        ward: string
+        addressLine: string
+        isDefault: boolean
+        customer?: Partial<ICustomer>
+    }
 }
 
 export {}

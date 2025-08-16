@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { getCartItems } from '@/slices/appSlice'
 import CheckoutForm, { TCheckoutFormSchema } from '@/pages/CheckoutPage/CheckoutForm'
 import LoadingIndicator from '@/pages/CheckoutPage/LoadingIndicator'
 import ProductSummarize from '@/pages/CheckoutPage/ProductSummarize'
 import useCustomerCart from '@/hooks/useCustomerCart'
-import useAxiosIns from '@/hooks/useAxiosIns'
 import useTitle from '@/hooks/useTitle'
 import toastConfig from '@/configs/toast'
 import orderService from '@/services/orderService'
@@ -22,8 +19,6 @@ const CheckoutPage = () => {
     const { verifyCouponMutation, placeOrderMutation } = orderService({ enableFetching: false })
     const [coupon, setCoupon] = useState<ICoupon | null>(null)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const axios = useAxiosIns()
 
     const handleVerifyCoupon = async (code: string) => {
         const res = await verifyCouponMutation.mutateAsync(code)
@@ -44,7 +39,6 @@ const CheckoutPage = () => {
         }
 
         const res = await placeOrderMutation.mutateAsync(orderInfo)
-        dispatch(getCartItems({ axios }) as any)
         navigate(`/thank-you/${res.data.data.orderId}`)
     }
 

@@ -18,7 +18,10 @@ const ERROR_MESSAGES = {
     EMAIL_VERIFICATION_FAILED: 'Email chưa được xác thực.',
     QUANTITY_EXCEED_CURRENT_STOCK: 'Số lượng vượt quá tồn kho',
     CART_NOT_FOUND: 'Không tìm thấy giỏ hàng',
-    CART_ITEM_NOT_FOUND: 'Không tìm thấy sản phẩm'
+    CART_ITEM_NOT_FOUND: 'Không tìm thấy sản phẩm',
+    ADDRESS_EXISTED: 'Địa chỉ nhận hàng đã tồn tại',
+    ADDRESS_NOT_FOUND: 'Địa chỉ nhận hàng không tồn tại',
+    CANNOT_DELETE_DEFAULT_ADDRESS: 'Không thể xóa địa chỉ nhận hàng mặc định'
 }
 
 const SUCCESS_MESSAGES = {
@@ -35,7 +38,10 @@ const SUCCESS_MESSAGES = {
     DELETE_IMAGE_SUCCESSFULLY: 'Xóa ảnh thành công.',
     ADD_TO_CART_SUCCESSFULLY: 'Thêm vào giỏ hàng thành công',
     UPDATE_CART_SUCCESSFULLY: 'Cập nhật giỏ hàng thành công',
-    RESET_CART_SUCCESSFULLY: 'Đặt lại giỏ hàng thành công'
+    RESET_CART_SUCCESSFULLY: 'Đặt lại giỏ hàng thành công',
+    ADD_ADDRESS_SUCCESSFULLY: 'Thêm địa chỉ nhận hàng thành công',
+    UPDATE_ADDRESS_SUCCESSFULLY: 'Cập nhật địa chỉ nhận hàng thành công',
+    DELETE_ADDRESS_SUCCESSFULLY: 'Xóa địa chỉ nhận hàng thành công'
 }
 
 export const RES_MESSAGE_MAPPING = {

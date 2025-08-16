@@ -27,7 +27,7 @@ const orderService = ({ enableFetching = false }: { enableFetching: boolean }) =
     const placeOrderMutation = useMutation({
         mutationFn: (data: any) => axios.post<IResponseData<any>>('/orders', data),
         onError: onError,
-        onSuccess: res => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['my-orders'] })
         }
     })

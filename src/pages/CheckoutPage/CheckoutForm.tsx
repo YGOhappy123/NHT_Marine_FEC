@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -6,51 +7,19 @@ import { useSelector } from 'react-redux'
 import { CircleDollarSign } from 'lucide-react'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { RootState } from '@/store'
-import { PHONE_REGEX } from '@/configs/constants'
 import AppLogo from '@/components/common/AppLogo'
+import ChooseAddressSection from '@/pages/CheckoutPage/ChooseAddressSection'
 
-const checkoutFormSchema = z
-    .object({
-        method: z.enum(['takeFromShop', 'delivery']),
-        note: z.string().optional(),
-        recipientName: z.string().optional(),
-        deliveryAddress: z.string().optional(),
-        deliveryPhone: z.string().optional()
-    })
-    .refine(
-        data => {
-            if (data.method === 'takeFromShop') return true
-            return data.recipientName != null && data.recipientName.trim().length > 0
-        },
-        {
-            message: 'Họ và tên người nhận không được để trống.',
-            path: ['recipientName']
-        }
-    )
-    .refine(
-        data => {
-            if (data.method === 'takeFromShop') return true
-            return data.deliveryPhone != null && PHONE_REGEX.test(data.deliveryPhone.trim())
-        },
-        {
-            message: 'Số điện thoại người nhận không hợp lệ.',
-            path: ['deliveryPhone']
-        }
-    )
-    .refine(
-        data => {
-            if (data.method === 'takeFromShop') return true
-            return data.deliveryAddress != null && data.deliveryAddress.trim().length > 0
-        },
-        {
-            message: 'Địa chỉ nhận hàng không được để trống.',
-            path: ['deliveryAddress']
-        }
-    )
+const checkoutFormSchema = z.object({
+    method: z.enum(['takeFromShop', 'delivery']),
+    note: z.string().optional(),
+    recipientName: z.string().optional(),
+    deliveryAddress: z.string().optional(),
+    deliveryPhone: z.string().optional()
+})
 
 export type TCheckoutFormSchema = z.infer<typeof checkoutFormSchema>
 
@@ -60,6 +29,7 @@ type CheckoutFormProps = {
 
 const CheckoutForm = ({ handlePlaceOrder }: CheckoutFormProps) => {
     const user = useSelector((state: RootState) => state.auth.user) as ICustomer
+    const [isDisabled, setIsDisabled] = useState(false)
 
     const form = useForm<TCheckoutFormSchema>({
         resolver: zodResolver(checkoutFormSchema),
@@ -138,62 +108,24 @@ const CheckoutForm = ({ handlePlaceOrder }: CheckoutFormProps) => {
                     />
 
                     {form.watch('method') === 'delivery' && (
-                        <>
-                            <FormField
-                                control={form.control}
-                                name="recipientName"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-card-foreground">Họ và tên người nhận</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder="Họ và tên người nhận..."
-                                                className="caret-card-foreground text-card-foreground h-12 rounded border-2 font-semibold"
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="deliveryPhone"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-card-foreground">Số điện thoại người nhận</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder="Số điện thoại người nhận..."
-                                                className="caret-card-foreground text-card-foreground h-12 rounded border-2 font-semibold"
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="deliveryAddress"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-card-foreground">Địa chỉ nhận hàng</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder="Địa chỉ nhận hàng..."
-                                                className="caret-card-foreground text-card-foreground h-12 rounded border-2 font-semibold"
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </>
+                        <ChooseAddressSection
+                            setCheckoutDisabled={setIsDisabled}
+                            setData={(ad: ICustomerAddress) => {
+                                form.setValue('recipientName', ad.recipientName)
+                                form.setValue('deliveryPhone', ad.phoneNumber)
+                                form.setValue(
+                                    'deliveryAddress',
+                                    [ad.addressLine, ad.ward, ad.district, ad.city].join(', ')
+                                )
+                            }}
+                        />
                     )}
 
-                    <Button size="xl" className="mt-5 ml-auto w-[200px] rounded-full text-base capitalize">
+                    <Button
+                        size="xl"
+                        className="mt-5 ml-auto w-[200px] rounded-full text-base capitalize"
+                        disabled={isDisabled}
+                    >
                         <CircleDollarSign />
                         Đặt hàng
                     </Button>
