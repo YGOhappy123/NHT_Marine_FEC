@@ -59,7 +59,7 @@ const ProductsPage = () => {
         <section className="bg-background flex w-full justify-center">
             <div className="max-w-container flex w-full flex-col items-center justify-between px-4 py-24">
                 <h2 className="font-[Dancing_Script] text-4xl capitalize">Danh sách sản phẩm</h2>
-                <ul className="mt-11 flex flex-1 flex-wrap items-center justify-center gap-4 lg:gap-6 xl:gap-8">
+                <ul className="mt-11 flex flex-1 flex-wrap items-center justify-center gap-4 lg:max-w-[80%] lg:gap-6 xl:gap-8">
                     {categories.length > 0 && (
                         <li>
                             <Button
