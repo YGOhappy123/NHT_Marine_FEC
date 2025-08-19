@@ -117,7 +117,7 @@ const HeaderSearchbar = () => {
 
             {inputFocusing && (
                 <div
-                    className="bg-card absolute left-0 w-full rounded border p-2 lg:p-3"
+                    className="bg-card absolute left-0 max-h-[400px] w-full overflow-y-auto rounded border p-2 lg:p-3"
                     style={{
                         top: 'calc(100% + 12px)'
                     }}

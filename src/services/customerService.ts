@@ -33,17 +33,15 @@ const customerService = ({ enableFetching }: { enableFetching: boolean }) => {
             recipientName,
             phoneNumber,
             city,
-            district,
             ward,
             addressLine
         }: {
             recipientName: string
             phoneNumber: string
             city: string
-            district: string
             ward: string
             addressLine: string
-        }) => dispatch(addAddress({ axios, recipientName, phoneNumber, city, district, ward, addressLine }) as any),
+        }) => dispatch(addAddress({ axios, recipientName, phoneNumber, city, ward, addressLine }) as any),
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ['my-addresses'] })
     })
 

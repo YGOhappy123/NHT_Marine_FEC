@@ -121,7 +121,6 @@ export const addAddress = createAsyncThunk(
             recipientName,
             phoneNumber,
             city,
-            district,
             ward,
             addressLine
         }: {
@@ -129,14 +128,13 @@ export const addAddress = createAsyncThunk(
             recipientName: string
             phoneNumber: string
             city: string
-            district: string
             ward: string
             addressLine: string
         },
         { rejectWithValue }
     ) => {
         try {
-            const payload = { recipientName, phoneNumber, city, district, ward, addressLine }
+            const payload = { recipientName, phoneNumber, city, ward, addressLine }
             const response = await axios.post<IResponseData<ICustomerCart>>('/customers/address', payload)
             return response.data
         } catch (error: any) {

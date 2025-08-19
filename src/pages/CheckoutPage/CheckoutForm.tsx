@@ -113,10 +113,7 @@ const CheckoutForm = ({ handlePlaceOrder }: CheckoutFormProps) => {
                             setData={(ad: ICustomerAddress) => {
                                 form.setValue('recipientName', ad.recipientName)
                                 form.setValue('deliveryPhone', ad.phoneNumber)
-                                form.setValue(
-                                    'deliveryAddress',
-                                    [ad.addressLine, ad.ward, ad.district, ad.city].join(', ')
-                                )
+                                form.setValue('deliveryAddress', [ad.addressLine, ad.ward, ad.city].join(', '))
                             }}
                         />
                     )}

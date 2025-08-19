@@ -1,33 +1,19 @@
 declare global {
     interface IAddressCity {
-        id: string
+        code: number
         name: string
-        type: number
-        typeText: string
-        slug: string
-    }
-
-    interface IAddressDistrict {
-        id: string
-        name: string
-        type: number
-        typeText: string
-        provinceId: string
+        codename: string
+        division_type: string
+        phone_code: string
+        wards: IAddressWard[]
     }
 
     interface IAddressWard {
-        id: string
+        code: number
         name: string
-        type: number
-        typeText: string
-        districtId: string
-    }
-
-    interface IOpenLocationResponse<T> {
-        data: T
-        total: number
-        code: string
-        message: string | null
+        codename: string
+        division_type: string
+        short_codename: string
     }
 }
 

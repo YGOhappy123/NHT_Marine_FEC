@@ -28,7 +28,6 @@ declare global {
         recipientName: string
         phoneNumber: string
         city: string
-        district: string
         ward: string
         addressLine: string
         isDefault: boolean

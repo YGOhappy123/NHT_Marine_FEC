@@ -72,8 +72,7 @@ const ChooseAddressSection = ({ setCheckoutDisabled, setData }: ChooseAddressSec
                         <p>
                             <span className="font-semibold">Địa chỉ: </span>
                             <span className="text-muted-foreground">
-                                {selectedAddr?.addressLine}, {selectedAddr?.ward}, {selectedAddr?.district},{' '}
-                                {selectedAddr?.city}
+                                {selectedAddr?.addressLine}, {selectedAddr?.ward}, {selectedAddr?.city}
                             </span>
                         </p>
                     </div>

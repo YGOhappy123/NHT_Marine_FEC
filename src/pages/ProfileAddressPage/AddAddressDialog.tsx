@@ -21,14 +21,12 @@ import { Input } from '@/components/ui/input'
 import { PHONE_REGEX } from '@/configs/constants'
 import { parsedEnv } from '@/env'
 import axios from 'axios'
-import useDebounce from '@/hooks/useDebounce'
 
 const addAddressFormSchema = z.object({
     recipientName: z.string().min(1, { message: 'Họ và tên người nhận không được để trống.' }),
     phoneNumber: z.string().regex(PHONE_REGEX, { message: 'Số điện thoại người nhận không hợp lệ.' }),
-    city: z.string().min(1, { message: 'Vui lòng chọn tỉnh/ thành phố.' }),
-    district: z.string().min(1, { message: 'Vui lòng chọn quận/ huyện.' }),
-    ward: z.string().min(1, { message: 'Vui lòng chọn phường/ xã.' }),
+    city: z.number().min(1, { message: 'Vui lòng chọn tỉnh/ thành phố.' }),
+    ward: z.number().min(1, { message: 'Vui lòng chọn phường/ xã.' }),
     addressLine: z.string().min(1, { message: 'Địa chỉ cụ thể không được để trống.' })
 })
 
@@ -41,7 +39,6 @@ type AddAddressDialogProps = {
             recipientName: string
             phoneNumber: string
             city: string
-            district: string
             ward: string
             addressLine: string
         },
@@ -57,68 +54,36 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
         defaultValues: {
             recipientName: '',
             phoneNumber: '',
-            city: '',
-            district: '',
-            ward: '',
+            city: 0,
+            ward: 0,
             addressLine: ''
         }
     })
 
-    const debouncedCityId = useDebounce(form.watch('city'))
-    const debouncedDistrictId = useDebounce(form.watch('district'))
-
     const fetchAllCitiesQuery = useQuery({
         queryKey: ['cities-all'],
-        queryFn: () =>
-            axios.get<IOpenLocationResponse<IAddressCity[]>>(`${parsedEnv.VITE_OPEN_LOCATION_URL}/provinces?size=100`)
+        queryFn: () => axios.get<IAddressCity[]>(parsedEnv.VITE_OPEN_LOCATION_URL)
     })
 
-    const fetchAllDistrictsQuery = useQuery({
-        queryKey: ['districts-all', debouncedCityId],
-        queryFn: () =>
-            axios.get<IOpenLocationResponse<IAddressDistrict[]>>(
-                `${parsedEnv.VITE_OPEN_LOCATION_URL}/districts/${debouncedCityId}?size=100`
-            ),
-        enabled: !!debouncedCityId
-    })
-
-    const fetchAllWardsQuery = useQuery({
-        queryKey: ['wards-all', debouncedDistrictId],
-        queryFn: () =>
-            axios.get<IOpenLocationResponse<IAddressWard[]>>(
-                `${parsedEnv.VITE_OPEN_LOCATION_URL}/wards/${debouncedDistrictId}?size=100`
-            ),
-        enabled: !!debouncedDistrictId
-    })
-
-    const cities = fetchAllCitiesQuery.data?.data?.data || []
-    const districts = fetchAllDistrictsQuery.data?.data?.data || []
-    const wards = fetchAllWardsQuery.data?.data?.data || []
-
-    useEffect(() => {
-        form.resetField('district')
-        form.resetField('ward')
-    }, [debouncedCityId, form.resetField])
+    const cities = fetchAllCitiesQuery.data?.data || []
+    const wards = cities.find(city => city.code === form.watch('city'))?.wards ?? []
 
     useEffect(() => {
         form.resetField('ward')
-    }, [debouncedDistrictId, form.resetField])
+    }, [form.watch('city'), form.resetField])
 
     const onSubmit = async (values: z.infer<typeof addAddressFormSchema>) => {
-        const matchingCity = cities.find(city => city.id === values.city)
-        const matchingDistrict = districts.find(district => district.id === values.district)
-        const matchingWard = wards.find(ward => ward.id === values.ward)
+        const matchingCity = cities.find(city => city.code === values.city)
+        const matchingWard = wards.find(ward => ward.code === values.ward)
 
-        if (!matchingCity || !matchingDistrict || !matchingWard) return
+        if (!matchingCity || !matchingWard) return
 
         await addNewAddressMutation.mutateAsync({
             recipientName: values.recipientName,
             phoneNumber: values.phoneNumber,
-            city: `${matchingCity.typeText === 'Tỉnh' ? 'tỉnh' : 'thành phố'} ${matchingCity.name}`,
-            district: `${matchingDistrict.name
-                .split(' ')
-                .map((w, i) => (i === 0 ? w.toLowerCase() : w))
-                .join(' ')}`,
+            city: matchingCity.name.startsWith('Thành phố')
+                ? `thành phố ${matchingCity.name.split(' ').slice(2).join(' ')}`
+                : `tỉnh ${matchingCity.name}`,
             ward: `${matchingWard.name
                 .split(' ')
                 .map((w, i) => (i === 0 ? w.toLowerCase() : w))
@@ -138,7 +103,7 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
                     <span className="lg:hidden">Thêm</span>
                 </Button>
             </DialogTrigger>
-            <DialogContent className="min-w-3xl md:min-w-4xl">
+            <DialogContent className="min-w-2xl md:min-w-3xl">
                 <DialogHeader>
                     <DialogTitle>Thêm địa chỉ nhận hàng</DialogTitle>
                     <DialogDescription>
@@ -184,7 +149,7 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
                                     </FormItem>
                                 )}
                             />
-                            <div className="grid grid-cols-3 items-start gap-4">
+                            <div className="grid grid-cols-2 items-start gap-4">
                                 <FormField
                                     control={form.control}
                                     name="city"
@@ -192,8 +157,8 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
                                         <FormItem>
                                             <FormLabel className="text-card-foreground">Tỉnh/ thành phố</FormLabel>
                                             <Select
-                                                onValueChange={field.onChange}
-                                                value={field.value}
+                                                onValueChange={value => field.onChange(Number(value))}
+                                                value={field.value?.toString() ?? ''}
                                                 disabled={fetchAllCitiesQuery.isLoading}
                                             >
                                                 <FormControl>
@@ -203,37 +168,10 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
                                                 </FormControl>
                                                 <SelectContent>
                                                     {cities.map(city => (
-                                                        <SelectItem key={city.id} value={city.id}>
-                                                            {city.typeText === 'Tỉnh' ? 'Tỉnh' : 'Thành phố'}{' '}
-                                                            {city.name}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="district"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel className="text-card-foreground">Quận/ huyện</FormLabel>
-                                            <Select
-                                                onValueChange={field.onChange}
-                                                value={field.value}
-                                                disabled={fetchAllDistrictsQuery.isLoading || !debouncedCityId}
-                                            >
-                                                <FormControl>
-                                                    <SelectTrigger className="caret-card-foreground text-card-foreground h-12! w-full rounded border-2 font-semibold">
-                                                        <SelectValue placeholder="Quận/ huyện..." />
-                                                    </SelectTrigger>
-                                                </FormControl>
-                                                <SelectContent>
-                                                    {districts.map(district => (
-                                                        <SelectItem key={district.id} value={district.id}>
-                                                            {district.name}
+                                                        <SelectItem key={city.code} value={city.code.toString()}>
+                                                            {city.name.startsWith('Thành phố')
+                                                                ? city.name
+                                                                : `Tỉnh ${city.name}`}
                                                         </SelectItem>
                                                     ))}
                                                 </SelectContent>
@@ -249,9 +187,9 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
                                         <FormItem>
                                             <FormLabel className="text-card-foreground">Phường/ xã</FormLabel>
                                             <Select
-                                                onValueChange={field.onChange}
-                                                value={field.value}
-                                                disabled={fetchAllWardsQuery.isLoading || !debouncedDistrictId}
+                                                onValueChange={value => field.onChange(Number(value))}
+                                                value={field.value?.toString() ?? ''}
+                                                disabled={!form.watch('city')}
                                             >
                                                 <FormControl>
                                                     <SelectTrigger className="caret-card-foreground text-card-foreground h-12! w-full rounded border-2 font-semibold">
@@ -260,7 +198,7 @@ const AddAddressDialog = ({ triggerButtonClassname, addNewAddressMutation }: Add
                                                 </FormControl>
                                                 <SelectContent>
                                                     {wards.map(ward => (
-                                                        <SelectItem key={ward.id} value={ward.id}>
+                                                        <SelectItem key={ward.code} value={ward.code.toString()}>
                                                             {ward.name}
                                                         </SelectItem>
                                                     ))}

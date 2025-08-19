@@ -55,7 +55,7 @@ const SwitchAddressDialog = ({
                                     <p>
                                         <span className="font-semibold">Địa chỉ: </span>
                                         <span className="text-muted-foreground">
-                                            {address.addressLine}, {address.ward}, {address.district}, {address.city}
+                                            {address.addressLine}, {address.ward}, {address.city}
                                         </span>
                                     </p>
                                 </div>
