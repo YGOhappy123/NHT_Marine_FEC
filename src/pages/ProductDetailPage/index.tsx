@@ -73,6 +73,7 @@ const ProductDetailPage = () => {
     }, [selectedOptions, product])
 
     const handleAddCartItem = async () => {
+        if (!selectedProductItem) return
         if (selectedProductItem!.stock === 0 || addCartItemMutation.isPending) return
         if (!isLogged) return toast(LOGIN_REQUIRED_MESSAGE, toastConfig('info'))
 
@@ -81,6 +82,12 @@ const ProductDetailPage = () => {
             quantity: 1
         })
     }
+
+    useEffect(() => {
+        setSelectedOptions({})
+        setSelectedProductItem(undefined)
+        setActiveImage(product?.imageUrl)
+    }, [productId])
 
     return (
         <section className="bg-background flex w-full justify-center">
